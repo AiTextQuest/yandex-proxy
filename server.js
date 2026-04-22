@@ -20,7 +20,7 @@ app.use(express.json());
 // ==========================================
 // ВСТАВЬ СВОИ ЗНАЧЕНИЯ:
 const FOLDER_ID = 'b1g9i925fihm3dpptcua';     // твой folder ID из Яндекс.Cloud
-const API_KEY = 'b1g9i925fihm3dpptcua';      // твой API-ключ
+const API_KEY = 'AQVNzdc2nFo6euhGYkqoPz8XvR0XmerRbsfGw4_j';      // твой API-ключ
 // ==========================================
 
 app.post('/api/gpt', async (req, res) => {
