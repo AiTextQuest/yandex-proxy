@@ -24,8 +24,12 @@ const API_KEY = 'b1g9i925fihm3dpptcua';      // твой API-ключ
 // ==========================================
 
 app.post('/api/gpt', async (req, res) => {
+  // Разрешаем CORS
+  res.header('Access-Control-Allow-Origin', '*');
+  
   try {
     const messages = req.body.messages;
+    console.log('📩 Запрос получен, сообщений:', messages.length);
     
     const response = await fetch("https://llm.api.cloud.yandex.net/foundationModels/v1/completion", {
       method: "POST",
@@ -41,9 +45,13 @@ app.post('/api/gpt', async (req, res) => {
     });
     
     const data = await response.json();
+    console.log('📦 Ответ от YandexGPT:', JSON.stringify(data, null, 2));
+    
+    // Возвращаем полный ответ, а не только result
     res.json(data);
   } catch(e) {
-    res.status(500).json({ error: e.message });
+    console.error('❌ Ошибка:', e);
+    res.status(500).json({ error: e.message, stack: e.stack });
   }
 });
 
